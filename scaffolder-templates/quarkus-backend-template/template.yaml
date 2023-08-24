@@ -144,6 +144,11 @@ spec:
     #       groupId: ${{ parameters.groupId }}
     #       artifactId: ${{ parameters.artifactId }}
     #       javaPackageName: ${{ parameters.javaPackageName }}
+    - id: fetch
+      name: Fetch source Code
+      action: fetch:plain
+      input: 
+        url: github.com/${{ parameters.githubOrg }}/${{ parameters.repoName }}.git
 
     - id: ciTemplate
       name: Generating the CI Component
@@ -191,14 +196,20 @@ spec:
           artifactId: ${{ parameters.artifactId }}
           javaPackageName: ${{ parameters.javaPackageName }}
 
-    - id: publish
-      name: Publishing to the Source Code Repository
-      action: publish:github
+    # - id: publish
+    #   name: Publishing to the Source Code Repository
+    #   action: publish:github
+    #   input:
+    #     allowedHosts: ['github.com']
+    #     description: ${{ parameters.description }}
+    #     repoUrl: github.com?owner=${{ parameters.githubOrg }}&repo=${{ parameters.repoName }}
+    #     defaultBranch: main
+
+    - id: push
+      name: Update and push to github
+      action: github:repo:push
       input:
-        allowedHosts: ['github.com']
-        description: ${{ parameters.description }}
         repoUrl: github.com?owner=${{ parameters.githubOrg }}&repo=${{ parameters.repoName }}
-        defaultBranch: main
 
     - id: register
       name: Registering the Catalog Info Component
