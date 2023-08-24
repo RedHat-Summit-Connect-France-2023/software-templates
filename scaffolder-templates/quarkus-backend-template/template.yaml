@@ -228,7 +228,7 @@ spec:
       input:
         repoContentsUrl: https://github.com/${{ parameters.githubOrg }}/${{ parameters.repoName }}${{ parameters.subPath }}
         catalogInfoPath: /catalog-info.yaml
-        # optional: 
+        optional: true
 
   output:
     links:
