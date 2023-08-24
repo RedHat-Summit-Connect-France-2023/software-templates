@@ -148,7 +148,8 @@ spec:
       name: Fetch source Code
       action: fetch:plain
       input: 
-        url: github.com/${{ parameters.githubOrg }}/${{ parameters.repoName }}.git
+        url: https://github.com/${{ parameters.githubOrg }}/${{ parameters.repoName }}.git
+        targetPath: .
 
     - id: ciTemplate
       name: Generating the CI Component
