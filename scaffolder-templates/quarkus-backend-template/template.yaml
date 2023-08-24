@@ -226,9 +226,9 @@ spec:
       name: Registering the Catalog Info Component
       action: catalog:register
       input:
-        repoContentsUrl: https://github.com/${{ parameters.githubOrg }}/${{ parameters.repoName }}/tree/main/${{ parameters.subPath }}
+        repoContentsUrl: ${{ steps.publish.output.remoteUrl }}
         catalogInfoPath: /catalog-info.yaml
-        optional: true
+        # optional: true
 
   output:
     links:
