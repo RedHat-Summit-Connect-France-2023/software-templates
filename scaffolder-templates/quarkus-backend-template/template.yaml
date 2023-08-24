@@ -232,7 +232,7 @@ spec:
   output:
     links:
       - title: Open the Source Code Repository
-        url: ${{ steps.publish.output.remoteUrl }}
+        url: https://github.com/${{ parameters.githubOrg }}/${{ parameters.repoName }}
       - title: Open the Catalog Info Component
         icon: catalog
         entityRef: ${{ steps.register.output.entityRef }}
