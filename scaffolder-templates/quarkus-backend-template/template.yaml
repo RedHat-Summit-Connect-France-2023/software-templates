@@ -206,18 +206,12 @@ spec:
     #     repoUrl: github.com?owner=${{ parameters.githubOrg }}&repo=${{ parameters.repoName }}
     #     defaultBranch: main
 
-    - id: debug
-      name: debug
-      action: debug:wait
-      input:
-        seconds: 20
-
     - id: publish
       name: Make a PR
       action: publish:github:pull-request
       input:
         repoUrl: github.com?owner=${{ parameters.githubOrg }}&repo=${{ parameters.repoName }}
-        branchName: main
+        branchName: ci-backstage
         title: Add CI files and backstage catalog
         description: Add CI files and backstage catalog
 
