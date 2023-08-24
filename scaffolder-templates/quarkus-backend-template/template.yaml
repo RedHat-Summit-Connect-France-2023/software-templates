@@ -205,12 +205,14 @@ spec:
     #     repoUrl: github.com?owner=${{ parameters.githubOrg }}&repo=${{ parameters.repoName }}
     #     defaultBranch: main
 
-    - id: push
-      name: Update and push to github
-      action: github:repo:push
+    - id: publish
+      name: Make a PR
+      action: publish:github:pull-request
       input:
         repoUrl: github.com?owner=${{ parameters.githubOrg }}&repo=${{ parameters.repoName }}
-        defaultBranch: main
+        branchName: main
+        title: Add CI files and backstage catalog
+        description: Add CI files and backstage catalog
 
     - id: register
       name: Registering the Catalog Info Component
