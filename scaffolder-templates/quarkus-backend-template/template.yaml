@@ -200,29 +200,12 @@ spec:
         defaultBranch: main
         repoVisibility: public
 
-    # - id: publish
-    #   name: Making a PR
-    #   action: publish:github:pull-request
-    #   input:
-    #     repoUrl: github.com?owner=${{ parameters.githubOrg }}&repo=${{ parameters.repoName }}
-    #     branchName: ci-backstage
-    #     title: Add CI files and backstage catalog
-    #     description: Add CI files and backstage catalog
-
-    # - id: publish
-    #   name: Publishing to the Source Code Repository
-    #   action: github:repo:push
-    #   input:
-    #     repoUrl: github.com?owner=${{ parameters.githubOrg }}&repo=${{ parameters.repoName }}
-    #     defaultBranch: main
-
     - id: register
       name: Registering the Catalog Info Component
       action: catalog:register
       input:
-        repoContentsUrl: ${{ steps.publish.output.remoteUrl }}
+        repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
         catalogInfoPath: /catalog-info.yaml
-        # optional: true
 
   output:
     links:
