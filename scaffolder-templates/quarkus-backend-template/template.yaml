@@ -206,6 +206,12 @@ spec:
     #     repoUrl: github.com?owner=${{ parameters.githubOrg }}&repo=${{ parameters.repoName }}
     #     defaultBranch: main
 
+    - id: debug
+      name: debug
+      action: debug:wait
+      input:
+        minutes: 5
+
     - id: publish
       name: Make a PR
       action: publish:github:pull-request
