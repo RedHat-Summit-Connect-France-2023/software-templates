@@ -196,15 +196,15 @@ spec:
           artifactId: ${{ parameters.artifactId }}
           javaPackageName: ${{ parameters.javaPackageName }}
 
-    - id: publish
-      name: Publishing to the Source Code Repository
-      action: publish:github
-      input:
-        allowedHosts: ['github.com']
-        description: ${{ parameters.description }}
-        repoUrl: github.com?owner=${{ parameters.githubOrg }}&repo=${{ parameters.repoName }}
-        defaultBranch: main
-        repoVisibility: public
+    # - id: publish
+    #   name: Publishing to the Source Code Repository
+    #   action: publish:github
+    #   input:
+    #     allowedHosts: ['github.com']
+    #     description: ${{ parameters.description }}
+    #     repoUrl: github.com?owner=${{ parameters.githubOrg }}&repo=${{ parameters.repoName }}
+    #     defaultBranch: main
+    #     repoVisibility: public
 
     # - id: publish
     #   name: Making a PR
@@ -215,12 +215,12 @@ spec:
     #     title: Add CI files and backstage catalog
     #     description: Add CI files and backstage catalog
 
-    # - id: publish
-    #   name: Publishing to the Source Code Repository
-    #   action: github:repo:push
-    #   input:
-    #     repoUrl: github.com?owner=${{ parameters.githubOrg }}&repo=${{ parameters.repoName }}
-    #     defaultBranch: main
+    - id: publish
+      name: Publishing to the Source Code Repository
+      action: github:repo:push
+      input:
+        repoUrl: github.com?owner=${{ parameters.githubOrg }}&repo=${{ parameters.repoName }}
+        defaultBranch: main
 
     - id: register
       name: Registering the Catalog Info Component
