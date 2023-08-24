@@ -206,22 +206,22 @@ spec:
     #     repoUrl: github.com?owner=${{ parameters.githubOrg }}&repo=${{ parameters.repoName }}
     #     defaultBranch: main
 
-    # - id: publish
-    #   name: Make a PR
-    #   action: publish:github:pull-request
-    #   input:
-    #     repoUrl: github.com?owner=${{ parameters.githubOrg }}&repo=${{ parameters.repoName }}
-    #     branchName: ci-backstage
-    #     title: Add CI files and backstage catalog
-    #     description: Add CI files and backstage catalog
-
     - id: publish
-      name: Publishing to the Source Code Repository
-      action: github:repo:push
+      name: Making a PR
+      action: publish:github:pull-request
       input:
         repoUrl: github.com?owner=${{ parameters.githubOrg }}&repo=${{ parameters.repoName }}
-        defaultBranch: main
-        
+        branchName: ci-backstage
+        title: Add CI files and backstage catalog
+        description: Add CI files and backstage catalog
+
+    # - id: publish
+    #   name: Publishing to the Source Code Repository
+    #   action: github:repo:push
+    #   input:
+    #     repoUrl: github.com?owner=${{ parameters.githubOrg }}&repo=${{ parameters.repoName }}
+    #     defaultBranch: main
+
     - id: register
       name: Registering the Catalog Info Component
       action: catalog:register
