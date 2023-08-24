@@ -196,23 +196,24 @@ spec:
           artifactId: ${{ parameters.artifactId }}
           javaPackageName: ${{ parameters.javaPackageName }}
 
-    # - id: publish
-    #   name: Publishing to the Source Code Repository
-    #   action: publish:github
-    #   input:
-    #     allowedHosts: ['github.com']
-    #     description: ${{ parameters.description }}
-    #     repoUrl: github.com?owner=${{ parameters.githubOrg }}&repo=${{ parameters.repoName }}
-    #     defaultBranch: main
-
     - id: publish
-      name: Making a PR
-      action: publish:github:pull-request
+      name: Publishing to the Source Code Repository
+      action: publish:github
       input:
+        allowedHosts: ['github.com']
+        description: ${{ parameters.description }}
         repoUrl: github.com?owner=${{ parameters.githubOrg }}&repo=${{ parameters.repoName }}
-        branchName: ci-backstage
-        title: Add CI files and backstage catalog
-        description: Add CI files and backstage catalog
+        defaultBranch: main
+        repoVisibility: public
+
+    # - id: publish
+    #   name: Making a PR
+    #   action: publish:github:pull-request
+    #   input:
+    #     repoUrl: github.com?owner=${{ parameters.githubOrg }}&repo=${{ parameters.repoName }}
+    #     branchName: ci-backstage
+    #     title: Add CI files and backstage catalog
+    #     description: Add CI files and backstage catalog
 
     # - id: publish
     #   name: Publishing to the Source Code Repository
