@@ -144,11 +144,11 @@ spec:
     #       artifactId: ${{ parameters.artifactId }}
     #       javaPackageName: ${{ parameters.javaPackageName }}
 
-    # - id: fetch
-    #   name: Fetch source Code
-    #   action: fetch:plain
-    #   input: 
-    #     url: github.com/${{ parameters.githubOrg }}/${{ parameters.repoName }}.git
+    - id: fetch
+      name: Fetch source Code
+      action: fetch:plain
+      input: 
+        url: github.com/${{ parameters.githubOrg }}/${{ parameters.repoName }}.git
 
     - id: ciTemplate
       name: Generating the CI Component
