@@ -1,15 +1,16 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: quarkus-backend-template
-  title: Create a Quarkus Backend application with a CI pipeline
-  description: Create a starter Quarkus Backend application with a CI pipeline
+  name: quarkus-backend-tekton-template
+  title: Add a Tekton CI pipeline to an existing Quarkus Application
+  description: Add a Tekton CI pipeline to an existing Quarkus Application
   tags:
     - quarkus
     - java
     - maven
+    - tekton
 spec:
-  owner: janus-authors
+  owner: france-ssa-authors
   system: janus-idp
   type: service
 
@@ -25,9 +26,14 @@ spec:
         githubOrg:
           title: GitHub Organization
           type: string
+          default: RedHat-Summit-Connect-France-2023
         repoName:
           title: Repository Name
           type: string
+        subPath:
+          title: Repo SubPath for the service
+          type: string
+          default: /
         description:
           title: Description
           type: string
@@ -54,27 +60,27 @@ spec:
           type: number
           default: 8080
           description: Override the port exposed for the application
-    - title: Provide information about the Java metadata
-      required:
-        - groupId
-        - artifactId
-        - javaPackageName
-      properties:
-        groupId:
-          title: Group ID
-          type: string
-          default: io.janus
-          description: Maven Group ID eg (io.janus)
-        artifactId:
-          title: Artifact ID
-          type: string
-          default: quarkusapp
-          description: Maven Artifact ID
-        javaPackageName:
-          title: Java Package Namespace
-          type: string
-          default: io/janus/quarkusapp
-          description: Name for the Java Package (ensure to use the / character as this is used for folder structure) should match Group ID and Artifact ID
+    # - title: Provide information about the Java metadata
+    #   required:
+    #     - groupId
+    #     - artifactId
+    #     - javaPackageName
+    #   properties:
+    #     groupId:
+    #       title: Group ID
+    #       type: string
+    #       default: io.janus
+    #       description: Maven Group ID eg (io.janus)
+    #     artifactId:
+    #       title: Artifact ID
+    #       type: string
+    #       default: quarkusapp
+    #       description: Maven Artifact ID
+    #     javaPackageName:
+    #       title: Java Package Namespace
+    #       type: string
+    #       default: io/janus/quarkusapp
+    #       description: Name for the Java Package (ensure to use the / character as this is used for folder structure) should match Group ID and Artifact ID
     - title: Provide information about the CI method
       required:
         - ci
@@ -85,18 +91,12 @@ spec:
           description: This action will create a CI pipeline for your application based on chosen method
           default: ../../scaffolder-skeletons/github-actions-skeleton/
           enum:
-            - ../../scaffolder-skeletons/github-actions-skeleton/
             - ../../scaffolder-skeletons/tekton-skeleton/
           enumNames:
-            - GitHub Action
             - Tekton
       dependencies:
         ci:
           oneOf:
-            - properties:
-                # Show no extra properties when GitHub Actions is selected
-                ci:
-                  const: ../../scaffolder-skeletons/github-actions-skeleton/
             - required:
                 - imageRepository
                 - namespace
@@ -123,27 +123,27 @@ spec:
                   type: string
                   description: The namespace for deploying resources
   steps:
-    - id: template
-      name: Generating the Source Code Component
-      action: fetch:template
-      input:
-        url: ./skeleton
-        values:
-          githubOrg: ${{ parameters.githubOrg }}
-          repoName: ${{ parameters.repoName }}
-          owner: ${{ parameters.owner }}
-          system: ${{ parameters.system }}
-          applicationType: api
-          description: ${{ parameters.description }}
-          namespace: ${{ parameters.namespace }}
-          imageUrl: ${{ parameters.imageUrl }}
-          imageBuilder: s2i-java
-          imageRepository: ${{ parameters.imageRepository }}
-          port: ${{ parameters.port }}
-          ci: ${{ parameters.ci }}
-          groupId: ${{ parameters.groupId }}
-          artifactId: ${{ parameters.artifactId }}
-          javaPackageName: ${{ parameters.javaPackageName }}
+    # - id: template
+    #   name: Generating the Source Code Component
+    #   action: fetch:template
+    #   input:
+    #     url: ./skeleton
+    #     values:
+    #       githubOrg: ${{ parameters.githubOrg }}
+    #       repoName: ${{ parameters.repoName }}
+    #       owner: ${{ parameters.owner }}
+    #       system: ${{ parameters.system }}
+    #       applicationType: api
+    #       description: ${{ parameters.description }}
+    #       namespace: ${{ parameters.namespace }}
+    #       imageUrl: ${{ parameters.imageUrl }}
+    #       imageBuilder: s2i-java
+    #       imageRepository: ${{ parameters.imageRepository }}
+    #       port: ${{ parameters.port }}
+    #       ci: ${{ parameters.ci }}
+    #       groupId: ${{ parameters.groupId }}
+    #       artifactId: ${{ parameters.artifactId }}
+    #       javaPackageName: ${{ parameters.javaPackageName }}
 
     - id: ciTemplate
       name: Generating the CI Component
