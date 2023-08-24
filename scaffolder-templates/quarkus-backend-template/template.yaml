@@ -33,7 +33,6 @@ spec:
         subPath:
           title: Repo SubPath for the service
           type: string
-          default: /
         description:
           title: Description
           type: string
@@ -226,7 +225,7 @@ spec:
       name: Registering the Catalog Info Component
       action: catalog:register
       input:
-        repoContentsUrl: https://github.com/${{ parameters.githubOrg }}/${{ parameters.repoName }}${{ parameters.subPath }}
+        repoContentsUrl: https://github.com/${{ parameters.githubOrg }}/${{ parameters.repoName }}/tree/main/${{ parameters.subPath }}
         catalogInfoPath: /catalog-info.yaml
         optional: true
 
