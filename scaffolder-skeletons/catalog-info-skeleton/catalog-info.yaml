@@ -19,6 +19,11 @@ metadata:
     backstage.io/kubernetes-id: ${{ values.repoName }}
     backstage.io/techdocs-ref: dir:.
     github.com/project-slug: ${{ values.githubOrg }}/${{ values.repoName }}
+
+    backstage.io/kubernetes-namespace: ${{ values.namespace }}
+    janus-idp.io/tekton-enabled : 'true'
+    backstage.io/source-location: url:https://github.com/${{ values.githubOrg }}/${{ values.repoName }}
+
 spec:
   type: ${{ values.applicationType }}
   system: ${{ values.system }}
