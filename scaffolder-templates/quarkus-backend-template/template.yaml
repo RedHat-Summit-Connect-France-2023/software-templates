@@ -122,35 +122,11 @@ spec:
                   type: string
                   description: The namespace for deploying resources
   steps:
-    # - id: template
-    #   name: Generating the Source Code Component
-    #   action: fetch:template
-    #   input:
-    #     url: ./skeleton
-    #     values:
-    #       githubOrg: ${{ parameters.githubOrg }}
-    #       repoName: ${{ parameters.repoName }}
-    #       owner: ${{ parameters.owner }}
-    #       system: ${{ parameters.system }}
-    #       applicationType: api
-    #       description: ${{ parameters.description }}
-    #       namespace: ${{ parameters.namespace }}
-    #       imageUrl: ${{ parameters.imageUrl }}
-    #       imageBuilder: s2i-java
-    #       imageRepository: ${{ parameters.imageRepository }}
-    #       port: ${{ parameters.port }}
-    #       ci: ${{ parameters.ci }}
-    #       groupId: ${{ parameters.groupId }}
-    #       artifactId: ${{ parameters.artifactId }}
-    #       javaPackageName: ${{ parameters.javaPackageName }}
-
     - id: ciTemplate
       name: Generating the CI Component
       action: fetch:template
       input:
         url: ${{ parameters.ci }}
-        copyWithoutTemplating:
-          - .github/workflows/
         values:
           githubOrg: ${{ parameters.githubOrg }}
           repoName: ${{ parameters.repoName }}
@@ -167,6 +143,33 @@ spec:
           groupId: ${{ parameters.groupId }}
           artifactId: ${{ parameters.artifactId }}
           javaPackageName: ${{ parameters.javaPackageName }}
+
+    - id: argocdTemplate
+      name: Generating the argoCD Component
+      action: fetch:template
+      input:
+        url: ./manifests/
+        copyWithoutTemplating: []
+        values:
+          component_id: ${{ parameters.component_id }}
+          description: ${{ parameters.description }}
+          destination: https://${{ parameters.repo.host }}/${{ parameters.repo.owner }}/${{parameters.component_id}}-gitops.git
+          source_repository: https://${{ parameters.repo.host }}/${{ parameters.repo.owner }}/${{parameters.component_id}}.git
+          repository_name: ${{parameters.component_id}}
+          git_owner: ${{ parameters.repo.owner }}
+          cluster: .apps.cluster-jr597.sandbox426.opentlc.com
+          namespace: ${{ parameters.component_id }}-dev
+          image_registry: ${{ parameters.image_registry }}
+          image_host: ${{ parameters.image_host }}
+          image_organization: ${{ parameters.image_organization }}
+          image_name: ${{ parameters.component_id }}
+          image_tag: ${{ parameters.image_tag }}
+          port: 8080
+          repository_host: ${{ parameters.repo.host }}
+          deployment_name: quarkus-template
+        targetPath: ./tenant-gitops
+
+
 
     - id: catalogTemplate
       name: Generating the Catalog Info Component
@@ -191,7 +194,7 @@ spec:
           javaPackageName: ${{ parameters.javaPackageName }}
 
     - id: publish
-      name: Publishing to the Source Code Repository
+      name: Publishing to the GitOPS Source Code Repository
       action: publish:github
       input:
         allowedHosts: ['github.com']
@@ -206,6 +209,16 @@ spec:
       input:
         repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
         catalogInfoPath: /catalog-info.yaml
+
+    # - id: create-argocd-resources
+    #   name: Create ArgoCD Resources
+    #   action: argocd:create-resources
+    #   input:
+    #     appName: ${{ parameters.component_id }}-bootstrap
+    #     argoInstance: main
+    #     namespace: janus-argocd
+    #     repoUrl: "https://github.com/${{ parameters.repo.owner }}/${{ parameters.component_id }}-gitops.git"
+    #     path: 'argocd/'
 
   output:
     links:
