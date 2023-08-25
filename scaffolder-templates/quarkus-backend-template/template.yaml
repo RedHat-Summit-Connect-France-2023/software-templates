@@ -17,12 +17,20 @@ spec:
   parameters:
     - title: Provide information about the new component
       required:
+        - component_id
         - githubOrg
         - repoName
         - owner
         - system
         - port
       properties:
+        component_id:
+          title: Name
+          type: string
+          description: Unique name of the component
+          default: my-quarkus-app
+          ui:field: EntityNamePicker
+          maxLength: 20
         githubOrg:
           title: GitHub Organization
           type: string
@@ -40,20 +48,22 @@ spec:
         owner:
           title: Owner
           type: string
-          ui:field: EntityPicker
-          ui:options:
-            catalogFilter:
-              kind:
-                - Group
-                - User
+          default: dev-user
+          # ui:field: EntityPicker
+          # ui:options:
+          #   catalogFilter:
+          #     kind:
+          #       - Group
+          #       - User
         system:
           title: System
           type: string
-          ui:field: EntityPicker
-          ui:options:
-            catalogFilter:
-              kind:
-                - System
+          default: system
+          # ui:field: EntityPicker
+          # ui:options:
+          #   catalogFilter:
+          #     kind:
+          #       - System
         port:
           title: Port
           type: number
@@ -167,7 +177,7 @@ spec:
           port: 8080
           repository_host: ${{ parameters.repo.host }}
           deployment_name: quarkus-template
-        targetPath: ./tenant-gitops
+#        targetPath: ./
 
 
 
