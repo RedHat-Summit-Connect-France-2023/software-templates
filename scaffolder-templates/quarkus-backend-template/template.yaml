@@ -28,7 +28,6 @@ spec:
           title: Name
           type: string
           description: Unique name of the component
-          default: my-quarkus-app
           ui:field: EntityNamePicker
           maxLength: 20
         githubOrg:
@@ -163,10 +162,10 @@ spec:
         values:
           component_id: ${{ parameters.component_id }}
           description: ${{ parameters.description }}
-          destination: https://${{ parameters.repo.host }}/${{ parameters.repo.owner }}/${{parameters.component_id}}-gitops.git
-          source_repository: https://${{ parameters.repo.host }}/${{ parameters.repo.owner }}/${{parameters.component_id}}.git
+          destination: https://github.com/${{ parameters.githubOrg }}/${{ parameters.repoName }}-gitops.git
+          source_repository: https://github.com/${{ parameters.githubOrg }}/${{ parameters.repoName }}.git
           repository_name: ${{parameters.component_id}}
-          git_owner: ${{ parameters.repo.owner }}
+          git_owner: ${{ parameters.githubOrg }}
           cluster: .apps.cluster-jr597.sandbox426.opentlc.com
           namespace: ${{ parameters.component_id }}-dev
           image_registry: ${{ parameters.image_registry }}
@@ -176,7 +175,7 @@ spec:
           image_tag: ${{ parameters.image_tag }}
           port: 8080
           repository_host: ${{ parameters.repo.host }}
-          deployment_name: quarkus-template
+          deployment_name: ${{ parameters.component_id }}
 #        targetPath: ./
 
 
