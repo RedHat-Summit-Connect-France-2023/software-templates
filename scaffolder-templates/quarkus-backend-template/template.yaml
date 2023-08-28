@@ -114,10 +114,10 @@ spec:
           enumNames:
             - Quay
             - Internal OpenShift Registry
-        imageUrl:
-          title: Image URL
-          type: string
-          description: The Quay.io or OpenShift Image URL <REGISTRY>/<IMAGE_URL>/<REPO_NAME>
+        # imageUrl:
+        #   title: Image URL
+        #   type: string
+        #   description: The Quay.io or OpenShift Image URL <REGISTRY>/<IMAGE_URL>/<REPO_NAME>
         namespace:
           title: Namespace
           type: string
@@ -136,7 +136,7 @@ spec:
           applicationType: api
           description: ${{ parameters.description }}
           namespace: ${{ parameters.namespace }}-dev
-          imageUrl: ${{ parameters.imageUrl }}
+#          imageUrl: ${{ parameters.imageUrl }}
           imageBuilder: s2i-java
           imageRepository: ${{ parameters.imageRepository }}
           port: ${{ parameters.port }}
@@ -157,7 +157,7 @@ spec:
           namespace: ${{ parameters.namespace }}
           repoName: ${{ parameters.repoName }}-gitops.git
           githubOrg: ${{ parameters.githubOrg }}
-          imageRepository: ${{ parameters.imageRepository }}/${{ parameters.imageUrl }}
+          imageRepository: ${{ parameters.imageRepository }}
           imageUrl: ${{ values.imageUrl }}
           port: 8080
           hostUrl: 
@@ -202,7 +202,7 @@ spec:
           applicationType: api
           description: ${{ parameters.description }}
           namespace: ${{ parameters.namespace }}
-          imageUrl: ${{ parameters.imageUrl }}
+          # imageUrl: ${{ parameters.imageUrl }}
           imageBuilder: s2i-java
           imageRepository: ${{ parameters.imageRepository }}
           port: ${{ parameters.port }}
