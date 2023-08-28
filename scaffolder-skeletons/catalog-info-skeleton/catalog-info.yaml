@@ -10,12 +10,8 @@ metadata:
   description: ${{ values.description }}
   {%- endif %}
   annotations:
-    {%- if values.hostUrl %}
-    argocd/app-name: ${{ values.repoName }}
-    {%- endif %}
-    {%- if values.ci == "../../scaffolder-skeletons/tekton-skeleton/" %}
-    tektonci/build-namespace: ${{ values.namespace }}
-    {%- endif %}
+    argocd/app-name: ${{ values.component_id }}-bootstrap
+    tektonci/build-namespace: ${{ values.namespace }}-dev
     backstage.io/kubernetes-id: ${{ values.repoName }}
     backstage.io/techdocs-ref: url:https://github.com/${{ values.githubOrg }}/${{ values.repoName }}
     backstage.io/kubernetes-namespace: ${{ values.namespace }}
