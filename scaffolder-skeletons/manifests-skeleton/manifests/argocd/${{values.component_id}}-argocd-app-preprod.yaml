@@ -9,9 +9,9 @@ metadata:
 spec:
   project: janus
   source:
-    repoURL: ${{ values.repoName }}
+    repoURL: ${{ values.repoUrl }}
     targetRevision: HEAD
-    path: ./helm/app
+    path: ./base
     helm:
       parameters:
       - name: namespace.name

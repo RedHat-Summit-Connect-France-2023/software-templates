@@ -160,6 +160,7 @@ spec:
         url: ../../scaffolder-skeletons/manifests-skeleton/manifests/
         copyWithoutTemplating: []
         values:
+          repoUrl: "https://github.com/${{ parameters.githubOrg }}/${{ parameters.repoName }}-gitops.git"
           component_id: ${{ parameters.component_id }}
           namespace: ${{ parameters.component_id }}-dev
           repoName: ${{ parameters.repoName }}-gitops.git
