@@ -143,7 +143,7 @@ spec:
           system: ${{ parameters.system }}
           applicationType: api
           description: ${{ parameters.description }}
-          namespace: ${{ parameters.namespace }}
+          namespace: ${{ parameters.namespace }}-dev
           imageUrl: ${{ parameters.imageUrl }}
           imageBuilder: s2i-java
           imageRepository: ${{ parameters.imageRepository }}
