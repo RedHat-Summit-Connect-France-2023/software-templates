@@ -104,32 +104,24 @@ spec:
           enumNames:
             - Basique Tekton CI
             - Tekton CI with Security Check
-      dependencies:
-        ci:
-          oneOf:
-            - required:
-                - imageRepository
-                - namespace
-                - imageUrl
-              properties:
-                imageRepository:
-                  title: Select a registry
-                  type: string
-                  default: image-registry.openshift-image-registry.svc:5000
-                  enum:
-                    - quay.io
-                    - image-registry.openshift-image-registry.svc:5000
-                  enumNames:
-                    - Quay
-                    - Internal OpenShift Registry
-                imageUrl:
-                  title: Image URL
-                  type: string
-                  description: The Quay.io or OpenShift Image URL <REGISTRY>/<IMAGE_URL>/<REPO_NAME>
-                namespace:
-                  title: Namespace
-                  type: string
-                  description: The namespace for deploying resources
+        imageRepository:
+          title: Select a registry
+          type: string
+          default: image-registry.openshift-image-registry.svc:5000
+          enum:
+            - quay.io
+            - image-registry.openshift-image-registry.svc:5000
+          enumNames:
+            - Quay
+            - Internal OpenShift Registry
+        imageUrl:
+          title: Image URL
+          type: string
+          description: The Quay.io or OpenShift Image URL <REGISTRY>/<IMAGE_URL>/<REPO_NAME>
+        namespace:
+          title: Namespace
+          type: string
+          description: The namespace for deploying resources
   steps:
     - id: ciTemplate
       name: Generating the CI Component
