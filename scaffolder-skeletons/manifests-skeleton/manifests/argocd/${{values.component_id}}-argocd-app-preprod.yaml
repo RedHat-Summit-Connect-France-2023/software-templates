@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: ${{ values.repoUrl }}
     targetRevision: HEAD
-    path: ./base
+    path: ./preprod
     # helm:
     #   parameters:
     #   - name: namespace.name

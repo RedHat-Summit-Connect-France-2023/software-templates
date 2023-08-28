@@ -11,15 +11,7 @@ spec:
   source:
     repoURL: ${{ values.repoUrl }}
     targetRevision: HEAD
-    path: ./base
-    # helm:
-    #   parameters:
-    #   - name: namespace.name
-    #     value: ${{ values.component_id }}-dev
-    #   - name: environment
-    #     value: dev
-    #   - name: image.tag
-    #     value: latest
+    path: ./dev
   destination:
     server: https://kubernetes.default.svc
     namespace: ${{ values.namespace }}-dev
