@@ -238,6 +238,7 @@ spec:
       name: Create ArgoCD Resources
       action: argocd:create-resources
       input:
+        component_id: ${{ parameters.component_id }}
         appName: ${{ parameters.component_id }}-bootstrap
         argoInstance: main
         namespace: janus-argocd
