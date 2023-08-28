@@ -15,7 +15,7 @@ spec:
         backstage.io/kubernetes-id: ${{ values.namespace }}
     spec:
       containers:
-        - name: ${{ values.repoName }}
+        - name: ${{ values.component_id }}
           image: ${{ values.imageRepository }}/${{ values.imageUrl }}/${{ values.repoName }}:latest
           ports:
             - name: http-${{ values.port }}
