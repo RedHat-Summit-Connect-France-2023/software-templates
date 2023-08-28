@@ -167,7 +167,7 @@ spec:
           namespace: ${{ parameters.namespace }}
           repoName: ${{ parameters.repoName }}-gitops.git
           githubOrg: ${{ parameters.githubOrg }}
-          imageRepository: ${{ parameters.image_registry }}/
+          imageRepository: ${{ parameters.imageRepository }}/${{ parameters.imageUrl }}
           imageUrl: ${{ values.imageUrl }}
           port: 8080
           hostUrl: 
