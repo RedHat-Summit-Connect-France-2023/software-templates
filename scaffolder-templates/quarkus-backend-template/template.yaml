@@ -162,7 +162,7 @@ spec:
         values:
           repoUrl: "https://github.com/${{ parameters.githubOrg }}/${{ parameters.repoName }}-gitops.git"
           component_id: ${{ parameters.component_id }}
-          namespace: ${{ parameters.namespace }}-dev
+          namespace: ${{ parameters.namespace }}
           repoName: ${{ parameters.repoName }}-gitops.git
           githubOrg: ${{ parameters.githubOrg }}
           imageRepository: ${{ parameters.image_registry }}/
