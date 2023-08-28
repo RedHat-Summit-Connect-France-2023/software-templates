@@ -9,7 +9,7 @@ metadata:
 
 
 spec:
-  project: ${{ parameters.component_id }}-bootstrap
+  project: ${{ values.component_id }}-bootstrap
   source:
     repoURL: ${{ values.repoUrl }}
     targetRevision: HEAD
