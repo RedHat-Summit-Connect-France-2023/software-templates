@@ -112,8 +112,6 @@ spec:
                 - namespace
                 - imageUrl
               properties:
-                ci:
-                  const: ../../scaffolder-skeletons/tekton-skeleton/basic-ci/
                 imageRepository:
                   title: Select a registry
                   type: string
