@@ -12,14 +12,14 @@ spec:
     repoURL: ${{ values.repoUrl }}
     targetRevision: HEAD
     path: ./base
-    helm:
-      parameters:
-      - name: namespace.name
-        value: ${{ values.component_id }}-prod
-      - name: environment
-        value: prod
-      - name: image.tag
-        value: prod
+    # helm:
+    #   parameters:
+    #   - name: namespace.name
+    #     value: ${{ values.component_id }}-prod
+    #   - name: environment
+    #     value: prod
+    #   - name: image.tag
+    #     value: prod
   destination:
     server: https://kubernetes.default.svc
     namespace: ${{ values.component_id }}-prod
