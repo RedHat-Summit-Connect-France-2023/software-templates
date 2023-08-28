@@ -25,7 +25,7 @@ spec:
         - port
       properties:
         component_id:
-          title: Name
+          title: Component ID Name
           type: string
           description: Unique name of the component
           ui:field: EntityNamePicker
