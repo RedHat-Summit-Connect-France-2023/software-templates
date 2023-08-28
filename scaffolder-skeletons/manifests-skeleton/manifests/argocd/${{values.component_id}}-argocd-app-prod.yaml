@@ -2,21 +2,32 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: ${{ values.component_id }}-dev-build
+  name: ${{ values.component_id }}-prod
   namespace: janus-argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
-  annotations:
-    argocd.argoproj.io/sync-wave: "-1"
 spec:
   project: janus
   source:
     repoURL: ${{ values.destination }}
     targetRevision: HEAD
-    path: ./tekton
+    path: ./helm/app
+    helm:
+      parameters:
+      - name: namespace.name
+        value: ${{ values.component_id }}-prod
+      - name: environment
+        value: prod
+      - name: image.tag
+        value: prod
   destination:
     server: https://kubernetes.default.svc
-    namespace: ${{ values.component_id }}-dev
+    namespace: ${{ values.component_id }}-prod
+  ignoreDifferences:
+    - group: '*'
+      jqPathExpressions:
+        - '.imagePullSecrets[] | select(.name|test(".-dockercfg-."))'
+      kind: ServiceAccount
   syncPolicy:
     automated:
       prune: true
