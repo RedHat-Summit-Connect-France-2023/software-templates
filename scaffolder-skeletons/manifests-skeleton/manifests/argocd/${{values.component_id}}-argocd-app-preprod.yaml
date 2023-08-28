@@ -9,7 +9,7 @@ metadata:
 spec:
   project: ${{ values.component_id }}-bootstrap
   source:
-    repoURL: ${{ values.repoUrl }}
+    repoURL: janus
     targetRevision: HEAD
     path: ./overlays/preprod
   destination:

@@ -9,7 +9,7 @@ metadata:
 
 
 spec:
-  project: ${{ values.component_id }}-bootstrap
+  project: janus
   source:
     repoURL: ${{ values.repoUrl }}
     targetRevision: HEAD
