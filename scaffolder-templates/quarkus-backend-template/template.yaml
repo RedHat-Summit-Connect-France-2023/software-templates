@@ -99,9 +99,11 @@ spec:
           description: This action will create a CI pipeline for your application based on chosen method
           default: ../../scaffolder-skeletons/github-actions-skeleton/
           enum:
-            - ../../scaffolder-skeletons/tekton-skeleton/
+            - ../../scaffolder-skeletons/tekton-skeleton/basic-ci/
+            - ../../scaffolder-skeletons/tekton-skeleton/scan-check-ci/
           enumNames:
-            - Tekton
+            - Basique Tekton CI
+            - Tekton CI with Security Check
       dependencies:
         ci:
           oneOf:
@@ -111,7 +113,7 @@ spec:
                 - imageUrl
               properties:
                 ci:
-                  const: ../../scaffolder-skeletons/tekton-skeleton/
+                  const: ../../scaffolder-skeletons/tekton-skeleton/basic-ci/
                 imageRepository:
                   title: Select a registry
                   type: string
