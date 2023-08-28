@@ -8,8 +8,6 @@ spec:
     This pipeline clones a git repo, builds a Docker image with Kaniko and
     pushes it to a registry
   params:
-    - name: pr-number
-      type: string
     - name: IMAGE_REPO
       type: string
     - name: GIT_REPO
@@ -18,17 +16,7 @@ spec:
       type: string
     - name: GIT_REPO_NAME
       type: string
-    - name: UI_BASE_PATH
-      type: string
     - name: GIT_REPO_FULL_NAME
-      type: string
-    - name: GITEA_HOST_URL
-      type: string
-    - name: GITEA_HTTPS_OR_HTTP
-      type: string
-    - name: GITEA_TOKEN_SECRET_NAME
-      type: string
-    - name: GITEA_TOKEN_SECRET_KEY
       type: string
   tasks:
     - name: fetch-source
