@@ -11,15 +11,7 @@ spec:
   source:
     repoURL: ${{ values.repoUrl }}
     targetRevision: HEAD
-    path: ./preprod
-    # helm:
-    #   parameters:
-    #   - name: namespace.name
-    #     value: ${{ values.component_id }}-preprod
-    #   - name: environment
-    #     value: preprod
-    #   - name: image.tag
-    #     value: preprod
+    path: ./overlays/preprod
   destination:
     server: https://kubernetes.default.svc
     namespace: ${{ values.namespace }}-preprod
