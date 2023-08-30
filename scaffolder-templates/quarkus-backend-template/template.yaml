@@ -118,10 +118,20 @@ spec:
         #   title: Image URL
         #   type: string
         #   description: The Quay.io or OpenShift Image URL <REGISTRY>/<IMAGE_URL>/<REPO_NAME>
-        namespace:
-          title: Namespace
-          type: string
-          description: The namespace for deploying resources
+        env_vars: 
+          title: Env variables
+          type: array
+          description: Build variables used by s2i
+          items:
+            type: string
+          default:
+            - MAVEN_S2I_ARTIFACT_DIRS=target/quarkus-app
+            - S2I_SOURCE_DEPLOYMENTS_FILTER=app lib quarkus quarkus-run.jar
+            - JAVA_OPTIONS=-Dquarkus.http.host=0.0.0.0
+            - AB_JOLOKIA_OFF=true
+            - JAVA_APP_JAR=/deployments/quarkus-run.jar
+
+            
   steps:
     - id: ciTemplate
       name: Generating the CI Component
@@ -137,12 +147,7 @@ spec:
           description: ${{ parameters.description }}
           namespace: ${{ parameters.namespace }}-dev
 #          imageUrl: ${{ parameters.imageUrl }}
-          env_vars: 
-            - MAVEN_S2I_ARTIFACT_DIRS=target/quarkus-app
-            - S2I_SOURCE_DEPLOYMENTS_FILTER=app lib quarkus quarkus-run.jar
-            - JAVA_OPTIONS=-Dquarkus.http.host=0.0.0.0
-            - AB_JOLOKIA_OFF=true
-            - JAVA_APP_JAR=/deployments/quarkus-run.jar
+          env_vars: ${{ parameters.env_vars }}
           imageBuilder: s2i-java
           imageRepository: ${{ parameters.imageRepository }}
           port: ${{ parameters.port }}
