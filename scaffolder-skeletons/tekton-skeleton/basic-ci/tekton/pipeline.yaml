@@ -19,6 +19,9 @@ spec:
       description: reference of the image that will get created
       default: ${{ values.imageRepository }}/${{ values.namespace }}/${{ values.repoName }}
       type: string
+    - name: env_vars
+      description: build variables used by s2i
+      default: ${{ values.env_vars }}
   tasks:
     - name: git-clone
       params:
