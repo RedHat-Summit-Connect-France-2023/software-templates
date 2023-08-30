@@ -21,7 +21,7 @@ spec:
       type: string
     - name: env_vars
       description: build variables used by s2i
-      default: ${{ values.env_vars }}
+      #default: ${{ values.env_vars }}
       type: array
   tasks:
     - name: git-clone
@@ -43,7 +43,7 @@ spec:
         - name: IMAGE
           value: $(params.output-image)
         - name: ENV_VARS
-          value: $(params.env_vars)
+          value: $(values.env_vars)
       runAfter:
         - git-clone
       taskRef:
