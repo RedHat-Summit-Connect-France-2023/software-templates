@@ -118,6 +118,10 @@ spec:
         #   title: Image URL
         #   type: string
         #   description: The Quay.io or OpenShift Image URL <REGISTRY>/<IMAGE_URL>/<REPO_NAME>
+        namespace:
+          title: Namespace
+          type: string
+          description: The namespace for deploying resources
         env_vars: 
           title: Env variables
           type: array
@@ -130,7 +134,6 @@ spec:
             - JAVA_OPTIONS=-Dquarkus.http.host=0.0.0.0
             - AB_JOLOKIA_OFF=true
             - JAVA_APP_JAR=/deployments/quarkus-run.jar
-
             
   steps:
     - id: ciTemplate
