@@ -22,6 +22,7 @@ spec:
     - name: env_vars
       description: build variables used by s2i
       default: ${{ values.env_vars }}
+      type: array
   tasks:
     - name: git-clone
       params:
