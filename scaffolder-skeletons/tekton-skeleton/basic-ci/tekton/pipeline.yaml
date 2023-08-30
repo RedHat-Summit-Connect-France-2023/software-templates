@@ -38,6 +38,8 @@ spec:
           value: latest
         - name: IMAGE
           value: $(params.output-image)
+        - name: ENV_VARS
+          value: $(params.env_vars)
       runAfter:
         - git-clone
       taskRef:
