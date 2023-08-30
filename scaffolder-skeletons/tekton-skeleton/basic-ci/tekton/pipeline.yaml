@@ -43,7 +43,7 @@ spec:
         - name: IMAGE
           value: $(params.output-image)
         - name: ENV_VARS
-          value: $(values.env_vars)
+          value: ${{ values.env_vars }}
       runAfter:
         - git-clone
       taskRef:
