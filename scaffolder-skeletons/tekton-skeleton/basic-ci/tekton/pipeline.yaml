@@ -19,10 +19,6 @@ spec:
       description: reference of the image that will get created
       default: ${{ values.imageRepository }}/${{ values.namespace }}/${{ values.repoName }}
       type: string
-    # - name: env_vars
-    #   description: build variables used by s2i
-    #   #default: ${{ values.env_vars }}
-    #   type: array
   tasks:
     - name: git-clone
       params:
@@ -50,6 +46,10 @@ spec:
             - JAVA_OPTIONS=-Dquarkus.http.host=0.0.0.0
             - AB_JOLOKIA_OFF=true
             - JAVA_APP_JAR=/deployments/quarkus-run.jar
+  {%- endif %}
+  {%- if values.pathContext %}
+        - name: PATH_CONTEXT
+          value: ${{ values.pathContext }}
   {%- endif %}
       runAfter:
         - git-clone
