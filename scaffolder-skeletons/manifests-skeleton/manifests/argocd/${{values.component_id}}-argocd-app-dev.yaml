@@ -9,7 +9,7 @@ metadata:
 
 
 spec:
-  project: janus
+  project: ${{values.component_id}}
   source:
     repoURL: ${{ values.repoUrl }}
     targetRevision: HEAD

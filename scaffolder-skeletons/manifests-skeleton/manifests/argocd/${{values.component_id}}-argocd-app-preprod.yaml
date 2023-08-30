@@ -7,7 +7,7 @@ metadata:
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  project: janus
+  project: ${{values.component_id}}
   source:
     repoURL: ${{ values.repoUrl }}
     targetRevision: HEAD
