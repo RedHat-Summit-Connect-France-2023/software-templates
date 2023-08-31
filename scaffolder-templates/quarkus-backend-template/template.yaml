@@ -147,7 +147,7 @@ spec:
           groupId: ${{ parameters.groupId }}
           artifactId: ${{ parameters.artifactId }}
           javaPackageName: ${{ parameters.javaPackageName }}
-          pathContext: $${{ parameters.pathContext }}
+          pathContext: ${{ parameters.pathContext }}
 
     - id: argocdTemplate
       name: Generating the argoCD Component
