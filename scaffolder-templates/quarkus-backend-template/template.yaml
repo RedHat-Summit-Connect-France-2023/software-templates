@@ -131,6 +131,7 @@ spec:
       input:
         url: ${{ parameters.ci }}
         values:
+          component_id: ${{ parameters.component_id }}
           githubOrg: ${{ parameters.githubOrg }}
           repoName: ${{ parameters.repoName }}
           owner: ${{ parameters.owner }}
