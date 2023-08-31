@@ -195,7 +195,7 @@ spec:
       input:
         allowedHosts: ['github.com']
         description: ${{ parameters.description }}
-        repoUrl: github.com?owner=${{ parameters.githubOrg }}&repo=${{ parameters.repoName }}-gitops
+        repoUrl: github.com?owner=${{ parameters.githubOrg }}&repo=${{ parameters.component_id }}-gitops
         defaultBranch: main
         repoVisibility: public
 
