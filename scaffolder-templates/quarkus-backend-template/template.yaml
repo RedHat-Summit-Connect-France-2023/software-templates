@@ -23,6 +23,7 @@ spec:
         - owner
         - system
         - port
+
       properties:
         component_id:
           title: Component ID Name
@@ -172,6 +173,7 @@ spec:
         url: ../../scaffolder-skeletons/catalog-info-skeleton/
         values:
           githubOrg: ${{ parameters.githubOrg }}
+          component_id: ${{ parameters.component_id }}
           repoName: ${{ parameters.repoName }}
           owner: ${{ parameters.owner }}
           system: ${{ parameters.system }}
