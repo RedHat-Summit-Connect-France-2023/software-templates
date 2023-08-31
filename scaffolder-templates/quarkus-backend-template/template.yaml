@@ -156,10 +156,10 @@ spec:
         url: ../../scaffolder-skeletons/manifests-skeleton/manifests/
         copyWithoutTemplating: []
         values:
-          repoUrl: "https://github.com/${{ parameters.githubOrg }}/${{ parameters.repoName }}-gitops.git"
+          repoUrl: "https://github.com/${{ parameters.githubOrg }}/${{ parameters.component_id }}-gitops.git"
           component_id: ${{ parameters.component_id }}
           namespace: ${{ parameters.namespace }}
-          repoName: ${{ parameters.repoName }}-gitops.git
+          repoName: ${{ parameters.component_id }}-gitops.git
           githubOrg: ${{ parameters.githubOrg }}
           imageRepository: ${{ parameters.imageRepository }}
           imageUrl: ${{ values.imageUrl }}
@@ -213,7 +213,7 @@ spec:
         appName: ${{ parameters.component_id }}-bootstrap
         argoInstance: main
         namespace: janus-argocd
-        repoUrl: "https://github.com/${{ parameters.githubOrg }}/${{ parameters.repoName }}-gitops.git"
+        repoUrl: "https://github.com/${{ parameters.githubOrg }}/${{ parameters.component_id }}-gitops.git"
         path: 'argocd/'
 
   output:
