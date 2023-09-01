@@ -2,7 +2,7 @@ apiVersion: triggers.tekton.dev/v1alpha1
 kind: TriggerTemplate
 metadata:
   name: ${{ values.component_id }}-run-pipeline
-  namespace: ${{ values.namespace }}
+  namespace: ${{ values.namespace }}-dev
 spec:
   params:
     - name: git-revision

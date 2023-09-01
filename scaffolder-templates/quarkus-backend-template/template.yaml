@@ -138,7 +138,7 @@ spec:
           system: ${{ parameters.system }}
           applicationType: service
           description: ${{ parameters.description }}
-          namespace: ${{ parameters.namespace }}-dev
+          namespace: ${{ parameters.namespace }}
 #          imageUrl: ${{ parameters.imageUrl }}
           imageBuilder: s2i-java
           quarkusS2I: true

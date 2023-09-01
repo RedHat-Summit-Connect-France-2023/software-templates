@@ -2,7 +2,7 @@ apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
   name: ${{ values.component_id }}-pipeline
-  namespace: ${{ values.namespace }}
+  namespace: ${{ values.namespace }}-dev
   labels:
     type: pipeline
     backstage.io/kubernetes-id: ${{ values.namespace }}
