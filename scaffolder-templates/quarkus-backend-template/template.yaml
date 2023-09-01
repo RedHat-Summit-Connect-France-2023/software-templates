@@ -136,7 +136,7 @@ spec:
           repoName: ${{ parameters.repoName }}
           owner: ${{ parameters.owner }}
           system: ${{ parameters.system }}
-          applicationType: api
+          applicationType: service
           description: ${{ parameters.description }}
           namespace: ${{ parameters.namespace }}-dev
 #          imageUrl: ${{ parameters.imageUrl }}
@@ -178,7 +178,7 @@ spec:
           repoName: ${{ parameters.repoName }}
           owner: ${{ parameters.owner }}
           system: ${{ parameters.system }}
-          applicationType: api
+          applicationType: service
           description: ${{ parameters.description }}
           namespace: ${{ parameters.namespace }}
           # imageUrl: ${{ parameters.imageUrl }}
