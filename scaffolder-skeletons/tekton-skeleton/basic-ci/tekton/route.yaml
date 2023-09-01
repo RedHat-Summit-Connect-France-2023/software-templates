@@ -6,7 +6,7 @@ metadata:
   labels:
     app.kubernetes.io/managed-by: EventListener
     app.kubernetes.io/part-of: Triggers
-    eventlistener: ${{ values.repoNcomponent_idame }}-el
+    eventlistener: ${{ values.component_id }}-el
 spec:
   to:
     kind: Service
