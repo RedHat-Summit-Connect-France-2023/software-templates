@@ -12,7 +12,7 @@ metadata:
   annotations:
     argocd/app-name: ${{ values.component_id }}-bootstrap
     tektonci/build-namespace: ${{ values.namespace }}-dev
-    backstage.io/kubernetes-id: ${{ values.repoName }}
+    backstage.io/kubernetes-id: ${{ values.namespace }}
     backstage.io/techdocs-ref: url:https://github.com/${{ values.githubOrg }}/${{ values.repoName }}
     backstage.io/kubernetes-namespace: ${{ values.namespace }}
     backstage.io/source-location: url:https://github.com/${{ values.githubOrg }}/${{ values.repoName }}
