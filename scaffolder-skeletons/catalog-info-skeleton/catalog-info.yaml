@@ -10,7 +10,7 @@ metadata:
   description: ${{ values.description }}
   {%- endif %}
   annotations:
-    argocd/app-name: ${{ values.component_id }}-bootstrap
+    argocd/app-selector: app=${{ values.component_id }}
     tektonci/build-namespace: ${{ values.namespace }}-dev
     backstage.io/kubernetes-id: ${{ values.namespace }}
     backstage.io/techdocs-ref: url:https://github.com/${{ values.githubOrg }}/${{ values.repoName }}

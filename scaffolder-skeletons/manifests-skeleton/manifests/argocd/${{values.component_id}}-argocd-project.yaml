@@ -5,6 +5,8 @@ metadata:
   namespace: janus-argocd
   annotations:
     argocd.argoproj.io/sync-wave: "-100"
+  labels:
+    app: ${{ values.component_id }}
 spec:
   clusterResourceWhitelist:
     - group: '*'

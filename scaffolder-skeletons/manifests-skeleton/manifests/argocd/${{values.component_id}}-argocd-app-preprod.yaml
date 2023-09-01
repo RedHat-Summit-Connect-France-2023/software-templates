@@ -6,6 +6,8 @@ metadata:
   namespace: janus-argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
+  labels:
+    app: ${{ values.component_id }}
 spec:
   project: ${{values.component_id}}-bootstrap
   source:

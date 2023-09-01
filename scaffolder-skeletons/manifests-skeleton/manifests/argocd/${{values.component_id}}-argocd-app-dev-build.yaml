@@ -8,6 +8,8 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
+  labels:
+    app: ${{ values.component_id }}
 spec:
   project: ${{values.component_id}}-bootstrap
   source:
