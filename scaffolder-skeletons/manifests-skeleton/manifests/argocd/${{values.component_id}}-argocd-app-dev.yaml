@@ -23,6 +23,10 @@ spec:
       jqPathExpressions:
         - '.imagePullSecrets[] | select(.name|test(".-dockercfg-."))'
       kind: ServiceAccount
+    - jqPathExpressions:
+        - .spec.host
+      group: route.openshift.io
+      kind: Route
   syncPolicy:
     automated:
       prune: true
