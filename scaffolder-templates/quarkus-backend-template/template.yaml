@@ -2,8 +2,8 @@ apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
   name: quarkus-backend-tekton-template
-  title: Add a Tekton CI pipeline to an existing Quarkus Application
-  description: Add a Tekton CI pipeline to an existing Quarkus Application
+  title: Add a Tekton CI pipeline and GitOPS to an existing Quarkus Application
+  description: Add a Tekton CI pipeline and create GitOPS applications to an existing Quarkus Application
   tags:
     - quarkus
     - java
@@ -123,6 +123,10 @@ spec:
           title: Namespace
           type: string
           description: The namespace for deploying resources
+        ocpDomain:
+          title: OpenShift Domain name
+          type: string
+          default: apps.rosa-dublin-00.vqqh.p1.openshiftapps.com
             
   steps:
     - id: ciTemplate

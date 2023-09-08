@@ -17,7 +17,11 @@ metadata:
     backstage.io/kubernetes-namespace: ${{ values.namespace }}-dev
     backstage.io/source-location: url:https://github.com/${{ values.githubOrg }}/${{ values.repoName }}
     github.com/project-slug: ${{ values.githubOrg }}/${{ values.repoName }}
-    janus-idp.io/tekton-enabled : 'true'    
+    janus-idp.io/tekton-enabled : 'true'
+  links:
+    - url: https://devspaces.${{ values.ocpDomain }}/dashboard/#/load-factory?url=https://github.com/${{ values.githubOrg }}/${{ values.repoName }}
+      title: OpenShift Dev Spaces
+      icon: web
 
 spec:
   type: ${{ values.applicationType }}
@@ -32,3 +36,15 @@ spec:
   partOf:
     - ${{ values.partOf }}
   {%- endif %}
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: ${{ values.component_id }}
+spec:
+  type: openapi
+  lifecycle: production
+  owner: ${{ values.owner }}
+  definition:
+    $text: https://${{ values.component_id }}-${{ values.namespace }}.${{ values.ocpDomain }}/swagger
