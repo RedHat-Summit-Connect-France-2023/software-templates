@@ -36,6 +36,8 @@ spec:
   partOf:
     - ${{ values.partOf }}
   {%- endif %}
+  providesApis:
+    - ${{values.component_id | dump}}
 
 ---
 apiVersion: backstage.io/v1alpha1
