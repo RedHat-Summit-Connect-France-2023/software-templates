@@ -47,4 +47,4 @@ spec:
   lifecycle: production
   owner: ${{ values.owner }}
   definition:
-    $text: https://${{ values.component_id }}-${{ values.namespace }}.${{ values.ocpDomain }}/swagger
+    $text: https://github.com/${{ values.githubOrg }}/${{ values.repoName }}/blob/main/${{ values.component_id }}/swagger
