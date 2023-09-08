@@ -193,6 +193,7 @@ spec:
           groupId: ${{ parameters.groupId }}
           artifactId: ${{ parameters.artifactId }}
           javaPackageName: ${{ parameters.javaPackageName }}
+          ocpDomain: ${{ parameters.ocpDomain }}
 
     - id: publish
       name: Publishing to the GitOPS Source Code Repository
