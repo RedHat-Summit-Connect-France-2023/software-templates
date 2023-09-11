@@ -49,47 +49,20 @@ spec:
           title: Owner
           type: string
           default: dev-user
-          # ui:field: EntityPicker
-          # ui:options:
-          #   catalogFilter:
-          #     kind:
-          #       - Group
-          #       - User
         system:
           title: System
           type: string
           default: system
-          # ui:field: EntityPicker
-          # ui:options:
-          #   catalogFilter:
-          #     kind:
-          #       - System
         port:
           title: Port
           type: number
           default: 8080
           description: Override the port exposed for the application
-    # - title: Provide information about the Java metadata
-    #   required:
-    #     - groupId
-    #     - artifactId
-    #     - javaPackageName
-    #   properties:
-    #     groupId:
-    #       title: Group ID
-    #       type: string
-    #       default: io.janus
-    #       description: Maven Group ID eg (io.janus)
-    #     artifactId:
-    #       title: Artifact ID
-    #       type: string
-    #       default: quarkusapp
-    #       description: Maven Artifact ID
-    #     javaPackageName:
-    #       title: Java Package Namespace
-    #       type: string
-    #       default: io/janus/quarkusapp
-    #       description: Name for the Java Package (ensure to use the / character as this is used for folder structure) should match Group ID and Artifact ID
+        providesApis:
+          title: providesApis
+          type: boolean
+          default: 'true'
+          description: Is the component an OpenAPI compatible API 
     - title: Provide information about the CI method
       required:
         - ci
@@ -115,10 +88,6 @@ spec:
           enumNames:
             - Quay
             - Internal OpenShift Registry
-        # imageUrl:
-        #   title: Image URL
-        #   type: string
-        #   description: The Quay.io or OpenShift Image URL <REGISTRY>/<IMAGE_URL>/<REPO_NAME>
         namespace:
           title: Namespace
           type: string
@@ -126,7 +95,7 @@ spec:
         ocpDomain:
           title: OpenShift Domain name
           type: string
-          default: apps.rosa-dublin-00.vqqh.p1.openshiftapps.com
+          default: apps.summitconnect.sandbox2218.opentlc.com
             
   steps:
     - id: ciTemplate
@@ -194,6 +163,7 @@ spec:
           artifactId: ${{ parameters.artifactId }}
           javaPackageName: ${{ parameters.javaPackageName }}
           ocpDomain: ${{ parameters.ocpDomain }}
+          providesApis: ${{ parameters.providesApis }}
 
     - id: publish
       name: Publishing to the GitOPS Source Code Repository

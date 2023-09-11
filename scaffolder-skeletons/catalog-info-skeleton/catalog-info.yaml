@@ -36,9 +36,12 @@ spec:
   partOf:
     - ${{ values.partOf }}
   {%- endif %}
+  {%- if values.providesApis %}
   providesApis:
     - ${{values.component_id | dump}}
+  {%- endif %}
 
+{%- if values.providesApis %}
 ---
 apiVersion: backstage.io/v1alpha1
 kind: API
@@ -50,3 +53,4 @@ spec:
   owner: ${{ values.owner }}
   definition:
     $text: https://github.com/${{ values.githubOrg }}/${{ values.repoName }}/blob/main/${{ values.component_id }}/swagger
+{%- endif %}
