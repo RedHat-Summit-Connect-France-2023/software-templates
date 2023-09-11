@@ -59,7 +59,7 @@ spec:
           default: 8080
           description: Override the port exposed for the application
         providesApis:
-          title: providesApis
+          title: OpenAPI Component ?
           type: boolean
           default: 'true'
           description: Is the component an OpenAPI compatible API 

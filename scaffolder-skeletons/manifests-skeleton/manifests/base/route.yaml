@@ -1,7 +1,7 @@
 kind: Route
 apiVersion: route.openshift.io/v1
 metadata:
-  name: inventory
+  name: ${{ values.component_id }}
   labels:
     app: ${{ values.component_id }}
     app.kubernetes.io/component: backstage
