@@ -113,7 +113,7 @@ spec:
           description: ${{ parameters.description }}
           namespace: ${{ parameters.namespace }}
 #          imageUrl: ${{ parameters.imageUrl }}
-          imageBuilder: s2i-java
+          imageBuilder: s2i-java-fixed
           quarkusS2I: true
           imageRepository: ${{ parameters.imageRepository }}
           port: ${{ parameters.port }}
