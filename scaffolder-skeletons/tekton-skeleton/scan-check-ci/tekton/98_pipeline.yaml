@@ -57,6 +57,9 @@ spec:
       taskRef:
         kind: ClusterTask
         name: ${{ values.imageBuilder }}
+      workspaces:
+        - name: source
+          workspace: source-folder
     - name: sign-image
       params:
         - name: image
@@ -98,8 +101,5 @@ spec:
           value: "true"
         - name: output_format
           value: csv
-      workspaces:
-        - name: source
-          workspace: source-folder
   workspaces:
     - name: source-folder
