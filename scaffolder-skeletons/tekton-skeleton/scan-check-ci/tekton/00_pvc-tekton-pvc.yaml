@@ -3,7 +3,7 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: tekton-pvc
-  namespace: ${{ values.namespace }}
+  namespace: ${{ values.namespace }}-dev
 spec:
   accessModes:
     - ReadWriteOnce

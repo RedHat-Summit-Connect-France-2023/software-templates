@@ -1,0 +1,105 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: ${{ values.component_id }}-pipeline-full-ci
+  namespace: ${{ values.namespace }}-dev
+  labels:
+    type: pipeline
+    backstage.io/kubernetes-id: ${{ values.namespace }}
+spec:
+  params:
+    - name: source-repo
+      description: source repo that contains the application code
+      type: string
+      default: https://github.com/${{ values.githubOrg }}/${{ values.repoName }}
+    - name: source-branch
+      description: source branch to build from
+      default: main
+      type: string
+    - name: output-image
+      description: reference of the image that will get created
+      default: ${{ values.imageRepository }}/${{ values.namespace }}-dev/${{ values.component_id }}
+      type: string
+  tasks:
+    - name: git-clone
+      params:
+        - name: url
+          value: $(params.source-repo)
+        - name: revision
+          value: $(params.source-branch)
+      taskRef:
+        kind: ClusterTask
+        name: git-clone
+      workspaces:
+        - name: output
+          workspace: source-folder
+    - name: ${{ values.imageBuilder }}
+      params:
+        - name: VERSION
+          value: latest
+        - name: IMAGE
+          value: $(params.output-image)
+  {%- if values.quarkusS2I %}
+        - name: ENV_VARS
+          value: 
+            - MAVEN_S2I_ARTIFACT_DIRS=target/quarkus-app
+            - S2I_SOURCE_DEPLOYMENTS_FILTER=app lib quarkus quarkus-run.jar
+            - JAVA_OPTIONS=-Dquarkus.http.host=0.0.0.0
+            - AB_JOLOKIA_OFF=true
+            - JAVA_APP_JAR=/deployments/quarkus-run.jar
+  {%- endif %}
+  {%- if values.pathContext %}
+        - name: PATH_CONTEXT
+          value: ${{ values.pathContext }}
+  {%- endif %}
+      runAfter:
+        - git-clone
+      taskRef:
+        kind: ClusterTask
+        name: ${{ values.imageBuilder }}
+    - name: sign-image
+      params:
+        - name: image
+          value: '$(params.output-image)'
+      runAfter:
+        - ${{ values.imageBuilder }}
+      taskRef:
+        kind: Task
+        name: cosign
+    - name: image-check
+      runAfter:
+        - sign-image
+      taskRef:
+        name: stackrox-image-check
+        kind: Task
+      params:
+        - name: image
+          value: '$(params.output-image)'
+        - name: rox_api_token
+          value: rox-api-token
+        - name: rox_central_endpoint
+          value: rox-api-token
+        - name: insecure-skip-tls-verify
+          value: "true"
+    - name: image-scan
+      runAfter:
+        - sign-image
+      taskRef:
+        name: stackrox-image-scan
+        kind: Task
+      params:
+        - name: image
+          value: '$(params.output-image)'
+        - name: rox_api_token
+          value: rox-api-token
+        - name: rox_central_endpoint
+          value: rox-api-token
+        - name: insecure-skip-tls-verify
+          value: "true"
+        - name: output_format
+          value: csv
+      workspaces:
+        - name: source
+          workspace: source-folder
+  workspaces:
+    - name: source-folder
