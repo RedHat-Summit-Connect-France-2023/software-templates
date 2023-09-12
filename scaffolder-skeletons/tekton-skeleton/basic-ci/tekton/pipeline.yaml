@@ -5,13 +5,13 @@ metadata:
   namespace: ${{ values.namespace }}-dev
   labels:
     type: pipeline
-    backstage.io/kubernetes-id: ${{ values.namespace }}
+    backstage.io/kubernetes-id: ${{ values.namespace }}-${{ values.component_id }}
 spec:
   params:
     - name: source-repo
       description: source repo that contains the application code
       type: string
-      default: https://github.com/${{ values.githubOrg }}/${{ values.repoName }}
+      default: https://github.com/ n/${{ values.repoName }}
     - name: source-branch
       description: source branch to build from
       default: main
