@@ -5,7 +5,7 @@ metadata:
   labels:
     app: ${{ values.component_id }}
     app.kubernetes.io/component: backstage
-    backstage.io/kubernetes-id: ${{ values.namespace }}
+    backstage.io/kubernetes-id: ${{ values.namespace }}-${{ values.component_id }}
 spec:
   ports:
     - name: http-${{ values.port }}
