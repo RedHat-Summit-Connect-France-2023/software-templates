@@ -6,6 +6,6 @@ metadata:
 spec:
   type: url
   targets:
-    - https://github.com/RedHat-Summit-Connect-France-2023/software-templates/blob/main/scaffolder-templates/nodejs-backend-template/template.yaml
     - https://github.com/RedHat-Summit-Connect-France-2023/software-templates/blob/main/scaffolder-templates/quarkus-backend-template/template.yaml
+    - https://github.com/RedHat-Summit-Connect-France-2023/software-templates/blob/main/scaffolder-templates/nodejs-backend-template/template.yaml
     - https://github.com/RedHat-Summit-Connect-France-2023/software-templates/blob/main/scaffolder-templates/argocd-template/template.yaml
