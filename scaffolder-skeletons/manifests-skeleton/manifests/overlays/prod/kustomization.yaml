@@ -6,6 +6,16 @@ resources:
 
 # patches:
 # - target:
+#     kind: Deployment
+#     name: ${{ values.component_id }}
+#   patch: |-
+#     - op: add
+#       path: "/spec/template/spec/containers/0/env"
+#       value: 
+#       - name: QUARKUS_DATASOURCE_ORDERMGMT_DB_JDBC_URL
+#         value: jdbc:postgresql://ordermgmt:5432/ordermgmt-db
+
+# - target:
 #     kind: Service
 #     name: ${{ values.component_id }}
 #   patch: |-
