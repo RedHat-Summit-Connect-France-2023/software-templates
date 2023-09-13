@@ -9,7 +9,7 @@ metadata:
   labels:
     tekton.dev/pipeline: ${{ values.component_id }}-pipeline-full-ci
     type: pipeline
-    backstage.io/kubernetes-id: ${{ values.namespace }}
+    backstage.io/kubernetes-id: ${{ values.namespace }}-${{ values.component_id }}
 spec:
   params:
     - name: source-repo

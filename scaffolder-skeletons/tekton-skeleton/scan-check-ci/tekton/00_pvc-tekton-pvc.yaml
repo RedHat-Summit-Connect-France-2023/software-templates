@@ -1,15 +1,15 @@
----
-kind: PersistentVolumeClaim
-apiVersion: v1
-metadata:
-  name: tekton-pvc
-  namespace: ${{ values.namespace }}-dev
-spec:
-  accessModes:
-    - ReadWriteOnce
-#  storageClassName: gp3-csi
-  resources:
-    requests:
-      storage: 10Gi
-  volumeMode: Filesystem
+# ---
+# kind: PersistentVolumeClaim
+# apiVersion: v1
+# metadata:
+#   name: tekton-pvc
+#   namespace: ${{ values.namespace }}-dev
+# spec:
+#   accessModes:
+#     - ReadWriteOnce
+# #  storageClassName: gp3-csi
+#   resources:
+#     requests:
+#       storage: 10Gi
+#   volumeMode: Filesystem
 
