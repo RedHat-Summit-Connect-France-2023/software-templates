@@ -76,8 +76,8 @@ spec:
             - ../../scaffolder-skeletons/tekton-skeleton/basic-ci/
             - ../../scaffolder-skeletons/tekton-skeleton/scan-check-ci/
           enumNames:
-            - Basique Tekton CI
-            - Tekton CI with Security Check
+            - Basic Tekton CI
+            - Trusted Software Supply Chain
         imageRepository:
           title: Select a registry
           type: string
