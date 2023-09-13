@@ -4,16 +4,16 @@ kind: Kustomization
 resources:
 - ../../base
 
-# patches:
-# - target:
-#     kind: Deployment
-#     name: ${{ values.component_id }}
-#   patch: |-
-#     - op: add
-#       path: "/spec/template/spec/containers/0/env"
-#       value: 
-#       - name: QUARKUS_DATASOURCE_ORDERMGMT_DB_JDBC_URL
-#         value: jdbc:postgresql://ordermgmt:5432/ordermgmt-db
+patches:
+- target:
+    kind: Deployment
+    name: ${{ values.component_id }}
+  patch: |-
+    - op: add
+      path: "/spec/template/spec/containers/0/env"
+      value: 
+      - name: QUARKUS_DATASOURCE_ORDERMGMT_DB_JDBC_URL
+        value: jdbc:postgresql://postgresql.thegoodcorner-legacy.svc.cluster.local:5432/ordermanagement
 
 # - target:
 #     kind: Service
