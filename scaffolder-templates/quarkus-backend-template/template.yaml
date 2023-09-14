@@ -137,6 +137,7 @@ spec:
           githubOrg: ${{ parameters.githubOrg }}
           imageRepository: ${{ parameters.imageRepository }}
           imageUrl: ${{ values.imageUrl }}
+          quarkusS2I: true
           port: 8080
           hostUrl: 
 
