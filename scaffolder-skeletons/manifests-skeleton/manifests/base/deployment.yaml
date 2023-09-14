@@ -6,6 +6,9 @@ metadata:
     app.kubernetes.io/part-of: ${{ values.component_id }}
     app.kubernetes.io/component: backstage
     backstage.io/kubernetes-id: ${{ values.namespace }}-${{ values.component_id }}
+    {%- if values.quarkusS2I %}
+    app.openshift.io/runtime: quarkus
+    {%- endif %}
 spec:
   replicas: 1
   selector:
