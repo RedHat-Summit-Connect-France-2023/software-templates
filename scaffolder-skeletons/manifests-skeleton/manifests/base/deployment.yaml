@@ -10,7 +10,6 @@ metadata:
     app.openshift.io/runtime: quarkus
     {%- endif %}
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: ${{ values.component_id }}

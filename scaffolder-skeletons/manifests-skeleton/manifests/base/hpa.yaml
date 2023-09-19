@@ -1,0 +1,22 @@
+kind: HorizontalPodAutoscaler
+apiVersion: autoscaling/v2
+metadata:
+  name: ${{ values.component_id }}-hpa
+  labels:
+    app.kubernetes.io/part-of: ${{ values.component_id }}
+    app.kubernetes.io/component: backstage
+    backstage.io/kubernetes-id: ${{ values.namespace }}-${{ values.component_id }}
+spec:
+  scaleTargetRef:
+    kind: Deployment
+    name: ${{ values.component_id }}
+    apiVersion: apps/v1
+  minReplicas: 2
+  maxReplicas: 10
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 40
