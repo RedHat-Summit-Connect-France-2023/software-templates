@@ -62,7 +62,12 @@ spec:
           title: OpenAPI Component ?
           type: boolean
           default: 'true'
-          description: Is the component an OpenAPI compatible API 
+          description: Is the component an OpenAPI compatible API
+        hpaEnabled:
+          title: Activate Autoscaling
+          type: boolean
+          default: 'true'
+          description: Should we activate the Horizontal Pod Autoscaler
     - title: Provide information about the CI method
       required:
         - ci
@@ -138,6 +143,7 @@ spec:
           imageRepository: ${{ parameters.imageRepository }}
           imageUrl: ${{ values.imageUrl }}
           quarkusS2I: true
+          hpaEnabled: ${{ parameters.hpaEnabled }}
           port: 8080
           hostUrl: 
 
