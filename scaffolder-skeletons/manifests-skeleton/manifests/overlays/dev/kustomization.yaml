@@ -14,6 +14,8 @@ patches:
       value: 
       - name: QUARKUS_DATASOURCE_ORDERMGMT_DB_JDBC_URL
         value: jdbc:postgresql://postgresql.thegoodcorner-legacy.svc.cluster.local:5432/ordermanagement
+      - name: QUARKUS_HIBERNATE_ORM_INVENTORY_DATABASE_GENERATION
+        value: none
 
 # - target:
 #     kind: Service
